@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block body %}
+<script src="../js/push.js" type="text/javascript"></script>
+    <h1>Отправить курьера</h1>
+
+    <form method="post" action="/add">
+        <label>Дата отъезда из Москвы:
+            <input type="date" class="date" name="date_out">
+        </label>
+        <label>Укажите регион:
+            <select name="region">
+                <option value="0" selected="selected"></option>
+                {% for val in regions %}
+                    <option class="region" value="{{ val['id'] }}" date_there="{{ val['days_there'] }}" date_back="{{ val['days_back'] }}">{{ val['title'] }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>Свободные курьеры:
+            <select name="courier">
+                <option value="0" selected="selected"></option>
+            </select>
+        </label>
+        <input type="hidden" name="date_out" value="">
+        <input type="hidden" name="date_there" value="">
+        <input type="hidden" name="date_back" value="">
+        <div class="send" style="display: inline-block;
+                                    padding: 4px 25px;
+                                    margin-left: 11px;
+                                    background: #e2e2e2;
+                                    border-radius: 10px;
+                                    border: 1px solid #A2A2A2;
+                                    cursor: pointer;">
+            Отправить
+        </div>
+    </form>
+    <h2 class="date_out"></h2>
+    <h2 class="date_there"></h2>
+    <h2 class="date_back"></h2>
+
+{% endblock %}

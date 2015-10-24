@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% block body %}
+<script src="../js/index.js" type="text/javascript"></script>
+    <div id="wrapper">
+        <h1>Расписание поездок курьеров в регионы</h1>
+
+        <h4>Можете выбрать период</h4>
+        <form>
+            <lable>С <input class="start" type="date" name="start"></lable>
+            <lable>По <input class="end" type="date" name="end"></lable>
+        </form>
+        <a style="margin: 15px 0; display: inline-block;" href="{{ url }}push" >Добавить поездку</a>
+        <div class="all_trip">
+            <table>
+                <tr>
+                    <th>
+                        ФИО курьера
+                    </th>
+                    <th>
+                        Регон
+                    </th>
+                    <th>
+                        Дата отъезда из Москвы
+                    </th>
+                    <th>
+                        Дата прибытия в регион
+                    </th>
+                    <th>
+                        Дата возвращения в Москву
+                    </th>
+                </tr>
+                {% for item in trips %}
+                <tr class="added">
+                    <th>
+                        {{ item['data_courier']['name'] }}
+                        {{ item['data_courier']['second_name'] }}
+                        {{ item['data_courier']['last_name'] }}
+                    </th>
+                    <th>
+                        {{ item['data_region']['title'] }}
+                    </th>
+                    <th class="date_out">
+                        {{ item['date_out'] }}
+                    </th>
+                    <th class="date_in">
+                        {{ item['date_in'] }}
+                    </th>
+                    <th class="date_back">
+                        {{ item['date_back'] }}
+                    </th>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
